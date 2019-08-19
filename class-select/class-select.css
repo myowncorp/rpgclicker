@@ -1,0 +1,44 @@
+﻿#grid-container{
+	display: grid;
+	height: 900px;
+	width: 100%;
+	grid-template-columns: repeat(3, 33%);
+	grid-template-rows: repeat(3, 33%);
+}
+
+#place-holder-row{
+	display: block;
+	grid-column: 1 / 4;
+	grid-row: 1/ 2;
+	height: 100%;
+	border: 1px solid green;
+}
+/* ALL OF THESE ARE ON THE SAME LEVEL, 1 FOR EACH CLASS */
+#warr-select-box{
+	display: block;
+	grid-column: 1 / 2;
+	grid-row: 2 / 3;
+	height: 100%;
+	border: 1px solid red;
+	text-align: center;
+}
+
+#mage-select-box{
+	display: block;
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
+	height: 100%;
+	border: 1px solid blue;
+	text-align: center;
+}
+
+#archer-select-box{
+	display: block;
+	grid-column: 3 / 4;
+	grid-row: 2 / 3;
+	height: 100%;
+	border: 1px solid blue;
+	text-align: center;
+}
+
+/* END SELECT BOX SECTION */
