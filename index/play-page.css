@@ -1,0 +1,31 @@
+﻿#grid-container{
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	grid-template-rows: 20% 20% 20% 20% 20%;
+	height: 900px;
+	width: 100%;
+}
+
+#left-column{
+	display: block;
+	background-color: lightgreen;
+	grid-column: 1 / 2;
+	grid-row: 1 / 6;
+	border: 1px solid black;
+}
+
+#central-column{
+	display: block;
+	background-color: lightblue;
+	grid-column: 2 / 3;
+	grid-row: 1 / 6;
+	border: 1px solid black;
+}
+
+#right-column{
+	display: block;
+	background-color: orange;
+	grid-column: 3 / 4;
+	grid-row: 1 / 6;
+	border: 1px solid black;
+}
