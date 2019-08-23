@@ -29,3 +29,26 @@
 	grid-row: 1 / 6;
 	border: 1px solid black;
 }
+
+
+#stat-table{
+	display: inline-table;
+	height: 33%;
+	width: 99%;
+	}
+
+.stat-table-row{
+	display: table-row;
+}
+
+.stat-table-stat-name{
+	display: table-cell;
+}
+
+.stat-table-stat-current{
+	display: table-cell;
+}
+
+.stat-table-stat-base{
+	display: table-cell;
+}

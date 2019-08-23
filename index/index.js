@@ -1,6 +1,15 @@
-
+// It all begins with this page. This is the initial transformation
+	var playChar = {
+	name: "" ,
+	charClass: "",
+	lvl: 1,
+	hp: 0,
+	atk: 0,
+	def: 0,
+	crit: 0,
+	}	
+	
 loadStartPage();
-
 // This is the first page that the player should see
 function loadStartPage() {
 	document.getElementById("main-body").innerHTML = 
@@ -60,18 +69,7 @@ function loadClassSelect() {
 			<script src="index.js"></script>
 			</body>
 		</html>`
-	localStorage = window.localStorage;
 
-	var playChar = {
-	name: "" ,
-	charClass: "",
-	lvl: 1,
-	hp: 0,
-	atk: 0,
-	def: 0,
-	crit: 0,
-	}	
-	
 	localStorage = window.localStorage;
 
 	document.getElementById("warr-select-box").addEventListener("click", function () {
@@ -124,10 +122,65 @@ function gamePlayScreen() {
 				</div>
 				<div id="central-column"> </div>
 
-				<div id="right-column"> </div>
+				<div id="right-column"> 
+					<div id="stat-table">
+						<div class="stat-table-row">
+							<div class="stat-table-stat-name"> Health </div>
+							<div class="stat-table-stat-current"> </div> 
+							<div class="stat-table-stat-base"> </div>
+						</div>
+				</div>
 	
-		<script src="play-page.js"></script>
+	
+		<script src="index.js"></script>
 		</body>
-		</html>`	
-}
+		</html>`
+	//create an Array of class stat-table-stat-current;
+	var statMenuArray = document.getElementsByClassName("stat-table-stat-current");
+	
+	//load the stats based on the selected characters 
+	charClassFirstTimeStatLoad();
 
+
+	function charClassFirstTimeStatLoad(){
+		if(playChar.charClass == "warrior"){
+			createWarrior();
+
+		} else if(playChar.charClass == "mage"){
+			createMage();
+
+		} else if(playChar.charClass == "archer"){
+			createArcher();
+		}
+		var statMenuArray = document.getElementsByClassName("stat-table-stat-current");
+		for(var i in statMenuArray)
+		{
+			statMenuArray[i].innerText = playChar.hp;
+		}
+	}
+
+	function createWarrior() {
+			playChar.name = "warrior-name-test";
+			playChar.hp = 20;
+			playChar.atk = 12;
+			playChar.def = 5;
+			playChar.crit = 0;
+	}
+
+	function createMage() {
+			playChar.name = "mage-name-test";
+			playChar.hp= 10;
+			playChar.atk = 25;
+			playChar.def = 0;
+			playChar.crit = 5;
+	}
+	
+	function createArcher() {
+			playChar.name = "archer-name-test";
+			playChar.hp= 15;
+			playChar.atk = 20;
+			playChar.def = 3;
+			playChar.crit = 3;
+	}
+		
+}
