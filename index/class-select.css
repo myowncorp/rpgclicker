@@ -13,6 +13,11 @@
 	height: 100%;
 	border: 1px solid green;
 }
+
+#name-input{
+	text-align: justify;
+	margin: auto auto auto auto;
+}
 /* ALL OF THESE ARE ON THE SAME LEVEL, 1 FOR EACH CLASS */
 #warr-select-box{
 	display: block;

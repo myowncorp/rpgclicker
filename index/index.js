@@ -8,7 +8,9 @@
 	def: 0,
 	crit: 0,
 	}	
-	
+
+var localStorage = window.localStorage;
+
 loadStartPage();
 // This is the first page that the player should see
 function loadStartPage() {
@@ -50,7 +52,11 @@ function loadClassSelect() {
 
 			<body id="main-body">
 			<div id="grid-container">
-				<div id="place-holder-row"> </div>
+				<div id="place-holder-row">
+					Enter your name: 
+					<input type="text" id="name-input" name="name" minlength="3" maxlength="12" placeholder="Name:"> </input> 
+					<input type="button" id="name-submit" name="namesubmit"> </input>
+				</div>
 
 	
 				<div class="class-select" id="warr-select-box">
@@ -70,39 +76,73 @@ function loadClassSelect() {
 			</body>
 		</html>`
 
-	localStorage = window.localStorage;
-
+	//accept the players name
+	document.getElementById("name-submit").addEventListener("click", function () {
+		let nameGrab = document.getElementById("name-input").value;
+		playChar.name= nameGrab;
+		localStorage.setItem("playCharName", playChar.name);
+	
+	
+	});
 	document.getElementById("warr-select-box").addEventListener("click", function () {
 		playChar.charClass="warrior";
 		localStorageClassStore(playChar.charClass);
-		gamePlayScreen();
-	
+		
+		// this is the variable that checks if the name is valid. Even though I could do all of this in the function
+		// because i dont want to push gamePlayScreen down further at this time. But let this note be here for reference.
+		var nameErrorCheck = nameError(playChar.name);
+		if(nameErrorCheck == true){
+			gamePlayScreen();
+		}
+		//	
 
 		});
 
 	 document.getElementById("mage-select-box").addEventListener("click", function() {
 		playChar.charClass="mage";
 		localStorageClassStore(playChar.charClass);
-		gamePlayScreen();
-			
+		
+		// this is the variable that checks if the name is valid. Even though I could do all of this in the function
+		// because i dont want to push gamePlayScreen down further at this time. But let this note be here for reference.
+		var nameErrorCheck = nameError(playChar.name);
+		if(nameErrorCheck == true){
+			gamePlayScreen();
+		}
+		//	
 	});
 
 
 	document.getElementById("archer-select-box").addEventListener("click", function() {
-		playChar.charcClass="archer";
+		playChar.charClass="archer";
 		localStorageClassStore(playChar.charClass);
-		gamePlayScreen();
-
+		
+		// this is the variable that checks if the name is valid. Even though I could do all of this in the function
+		// because i dont want to push gamePlayScreen down further at this time. But let this note be here for reference.
+		var nameErrorCheck = nameError(playChar.name);
+		if(nameErrorCheck == true){
+			gamePlayScreen();
+		}
+		//
 	});
+	
+
+	function nameError(charName){
+		if((charName == null) || (charName.length < 3))
+		{
+			alert("Please give yourself a valid name");
+			return false;
+		};
+		return true;
+	
+	}
 
 	function localStorageClassStore(charClass) {
-	localStorage.setItem("playCharClass", charClass);
-
+		localStorage.setItem("playCharClass", charClass);
 	}
 
 }
 
-function gamePlayScreen() {
+function gamePlayScreen(){
 	//this is the HTML that you play on
 	document.getElementById("main-body").innerHTML=
 		`<!DOCTYPE html>
@@ -125,7 +165,7 @@ function gamePlayScreen() {
 				<div id="right-column"> 
 					<div id="stat-table">
 						<div class="stat-table-row">
-							<div class="stat-table-stat-name"> Health </div>
+							<div class="stat-table-stat-name"> Name </div>
 							<div class="stat-table-stat-current"> </div> 
 							<div class="stat-table-stat-base"> </div>
 						</div>
@@ -134,7 +174,7 @@ function gamePlayScreen() {
 	
 		<script src="index.js"></script>
 		</body>
-		</html>`
+		</html>`;
 	//create an Array of class stat-table-stat-current;
 	var statMenuArray = document.getElementsByClassName("stat-table-stat-current");
 	
@@ -151,16 +191,16 @@ function gamePlayScreen() {
 
 		} else if(playChar.charClass == "archer"){
 			createArcher();
-		}
+		};
 		var statMenuArray = document.getElementsByClassName("stat-table-stat-current");
 		for(var i in statMenuArray)
 		{
-			statMenuArray[i].innerText = playChar.hp;
-		}
+			playCharArray = Object.values(playChar);
+			statMenuArray[i].innerText = playCharArray[i];
+		};
 	}
 
 	function createWarrior() {
-			playChar.name = "warrior-name-test";
 			playChar.hp = 20;
 			playChar.atk = 12;
 			playChar.def = 5;
@@ -168,15 +208,13 @@ function gamePlayScreen() {
 	}
 
 	function createMage() {
-			playChar.name = "mage-name-test";
 			playChar.hp= 10;
 			playChar.atk = 25;
 			playChar.def = 0;
 			playChar.crit = 5;
 	}
 	
-	function createArcher() {
-			playChar.name = "archer-name-test";
+	function createArcher() {	
 			playChar.hp= 15;
 			playChar.atk = 20;
 			playChar.def = 3;
